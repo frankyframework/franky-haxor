@@ -1,5 +1,5 @@
 {
-    "name": "sombrerodepaja/franky-haxor",
+    "name": "frankyframework/franky-haxor",
     "type": "library",
     "description": "Funciones de tokenizacion y escape de caracteres",
     "authors": [
