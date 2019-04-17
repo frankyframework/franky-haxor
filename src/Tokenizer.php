@@ -7,27 +7,30 @@ class Tokenizer
 
         public function __construct($session_name='haxor')
         {
-            //$this->MySession = new \vendor\core\MYSESSION('haxor');
-            $this->MySession = $_SESSION[$session_name];
+            $this->MySession = $session_name;
+
+            if(!isset($_SESSION[$this->MySession]))
+            {
+              $_SESSION[$this->MySession] = [];
+            }
+
         }
 
         public function token($name,$val)
         {
               $token = md5(session_id().$name.$val);
-            //  $this->MySession->SetVar($token,$val);
-              $this->MySession[$token] = $val;
+              $_SESSION[$this->MySession][$token] = $val;
               return $token;
         }
 
         public function decode($token)
         {
-
-            return $this->MySession[$token]; //$this->MySession->GetVar($token);
+            return $_SESSION[$this->MySession][$token]; //$this->MySession->GetVar($token)
         }
 
         public function delete( $name )
         {
-          unset($this->MySession[$token]/*$this->MySession->GetVar($name)*/);
+          unset($_SESSION[$this->MySession][$token]);
         }
 }
 ?>
